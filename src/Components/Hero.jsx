@@ -21,8 +21,8 @@ const Hero = () => {
                         </div>
                     </div>
                     <div className="flex-none w-[20%] text-right self-end">
-                        <div className="text-sm">{now.toLocaleDateString()}</div>
-                        <div className="text-lg">{now.toLocaleTimeString()}</div>
+                        <div className="text-sm font-semibold">{now.toLocaleDateString()}</div>
+                        <div className="text-lg font-semibold">{now.toLocaleTimeString()}</div>
                     </div>
                 </div>
             </div>  
