@@ -13,7 +13,7 @@ const Hero = () => {
             <div className="mx-6 my-6 overflow-hidden rounded-4xl border-l-2 border-r-2 border-blue-300 w-full relative">
                 <img src="hero2.jpg" alt="" className="w-full max-h-screen object-cover"/>
                 <div className="absolute bottom-10 left-10 right-10 p-4 flex flex-row items-center justify-between">
-                    <div className="flex flex-col justify-start items-start w-[50%]">
+                    <div className="flex flex-col justify-start items-start w-[60%]">
                         <h1 className="font-bold text-8xl">Make A World of Difference</h1>
                         <div className="flex flex-row justify-between gap-4 mt-2 items-start">
                             <p className="max-w-[70%] font-bold">Join us in our mission to create a sustainable future through innovative solutions and community engagement.</p>
