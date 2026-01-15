@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import BlogForm from "./BlogForm";
 import BlogCard from "./BlogCard";
-import BlogBg from "../Assets/blog-bg.jpg";
+import BlogBg from "../Assets/blog-bg2.jpg";
 
 const Blog = ({ userRole = "member" }) => {
   // ======================== CHANGE #1: MOCK DATA ========================
@@ -101,7 +101,7 @@ const Blog = ({ userRole = "member" }) => {
           <h1 className="text-4xl md:text-5xl font-bold text-green-300 mb-4">
             Community Blog
           </h1>
-          <p className="text-black text-lg md:text-xl">
+          <p className="text-white text-lg md:text-xl">
             Share your journey, tips, and experiences with our community
           </p>
         </div>
@@ -164,7 +164,7 @@ const Blog = ({ userRole = "member" }) => {
         </div>
 
         {/* Blogs List */}
-        <div className="space-y-6">
+        <div className="max-h-[600px] overflow-y-auto space-y-6 pr-4">
           {filteredBlogs.length > 0 ? (
             filteredBlogs.map((blog) => (
               <BlogCard

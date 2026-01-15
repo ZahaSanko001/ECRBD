@@ -35,19 +35,20 @@ const Navbar = () => {
                 <div className="hidden md:flex gap-8">
                     <a href="#hero" className="hover:text-green-200">Home</a>
                     <a href="#about" className="hover:text-green-200">Training</a>
+                    <a href="#about" className="hover:text-green-200">Volunteer</a>
                     <a href="#blogs" className="hover:text-green-200">Blogs</a>
                     <a href="#projects" className="hover:text-green-200">Events</a>
                     <a href="#projects" className="hover:text-green-200">Q&A</a>
                     <a href="#contact" className="hover:text-green-200">Contact</a>
-                    
-                    <div className="relative group">
+                    <a href="#Login" className="hover:text-green-200">SignIn</a>
+{/*                     <div className="relative group">
                         <button className="hover:text-green-200">Portal</button>
                         <div className="absolute hidden group-hover:block border border-green-300 rounded-lg mt-2 left-1/2 transform -translate-x-1/2 ">
                             <a href="/portal/admin" className="block px-4 py-2 hover:bg-blue-300 hover:text-slate-900 rounded-lg w-full text-center">Admin</a>
                             <a href="/portal/member" className="block px-4 py-2 hover:bg-blue-300 hover:text-slate-900 rounded-lg w-full text-center">Member</a>
                             <a href="/portal/trainer" className="block px-4 py-2 hover:bg-blue-300 hover:text-slate-900 rounded-lg w-full text-center">Trainer</a>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
 
