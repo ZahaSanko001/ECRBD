@@ -2,6 +2,7 @@ import {React, useState} from "react";
 import { ScrollTrigger, SplitText } from "gsap/all";
 import { useGSAP } from "@gsap/react";
 import  gsap  from "gsap";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
     const[isOpen, setIsOpen] = useState(false);
@@ -40,7 +41,7 @@ const Navbar = () => {
                     <a href="#projects" className="hover:text-green-200">Events</a>
                     <a href="#projects" className="hover:text-green-200">Q&A</a>
                     <a href="#contact" className="hover:text-green-200">Contact</a>
-                    <a href="#Login" className="hover:text-green-200">SignIn</a>
+                    <Link to="/login" className="hover:text-green-200">SignIn</Link>
 {/*                     <div className="relative group">
                         <button className="hover:text-green-200">Portal</button>
                         <div className="absolute hidden group-hover:block border border-green-300 rounded-lg mt-2 left-1/2 transform -translate-x-1/2 ">

@@ -44,10 +44,10 @@ const BlogCard = ({ blog, userRole, onDelete, onToggleHide }) => {
       <p className="text-gray-300 mb-4 line-clamp-3">{blog.content}</p>
 
       {/* Blog Meta */}
-      <div className="flex gap-4 text-sm text-gray-400">
+{/*       <div className="flex gap-4 text-sm text-gray-400">
         <span>❤️ {blog.likes || 0} Likes</span>
         <span>💬 {blog.comments || 0} Comments</span>
-      </div>
+      </div> */}
 
       {/* Read More Button */}
       <button className="mt-4 px-4 py-2 border border-green-400 text-green-400 rounded hover:bg-green-400 hover:text-slate-900 transition">
