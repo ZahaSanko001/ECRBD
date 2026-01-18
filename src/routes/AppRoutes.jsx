@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+/* import { Routes, Route } from "react-router-dom";
 import Login from "../pages/Login";
 import Dashboard from "../pages/admin/Dashboard";
 import Users from "../pages/admin/Users";
@@ -26,3 +26,4 @@ export default function AppRoutes() {
     </Routes>
   );
 }
+ */

@@ -2,8 +2,9 @@ import { useState } from "react";
 import api from "../api/axios";
 import { useAuth } from "../auth/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
-export default function Login() {
+const Login = () => {
   const [Name, setName] = useState("");
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
@@ -13,9 +14,10 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const res = await api.post("/auth/login", { Name, Email, Password });
-    login(res.data);
-    
-    if (res.data.user?.role === "Admin") {
+    login(res.data.token);
+
+    const decoded = jwtDecode(res.data.token);
+    if (decoded.role === "Admin") {
       navigate("/admin/dashboard");
     } else {
       navigate("/");
@@ -48,10 +50,12 @@ export default function Login() {
           value={Password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button className="w-full bg-green-600 text-white p-2 rounded" onClick={handleSubmit}>
+        <button className="w-full bg-green-600 text-white p-2 rounded" type="submit">
           Login
         </button>
       </form>
     </div>
   );
 }
+
+export default Login;

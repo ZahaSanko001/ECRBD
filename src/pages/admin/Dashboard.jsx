@@ -1,4 +1,6 @@
-export default function Dashboard() {
+import React from 'react';
+
+const Dashboard = () => {
   return (
     <div>
       <h1 className="text-2xl font-bold mb-4">Overview</h1>
@@ -10,3 +12,5 @@ export default function Dashboard() {
     </div>
   );
 }
+
+export default Dashboard;

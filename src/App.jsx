@@ -15,15 +15,13 @@ import RequireAuth from "./auth/RequireAuth";
 const App = () => {
 
     return(
-        <BrowserRouter>
-            <main>
-                <Navbar/>
-                <Hero/>
-                <About/>
-                <Blog/>
-                <Contact/>
-            </main>
-        </BrowserRouter>
+        <main>
+            <Navbar/>
+            <Hero/>
+            <About/>
+            <Blog/>
+            <Contact/>
+        </main>
     )
 }
 
