@@ -5,7 +5,13 @@ export default function Users() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    api.get("/admin/users").then(res => setUsers(res.data));
+    api.get("/admin/users").then(res => {
+      console.log(res.data);
+      setUsers(res.data);
+    })
+    .catch(err => {
+      console.error("Error fetching users:", err);
+    });
   }, []);
 
   const blockUser = async (id) => {
@@ -21,7 +27,7 @@ export default function Users() {
   return (
     <div>
       <h1 className="text-xl font-bold mb-4">Users</h1>
-      <table className="w-full bg-white rounded shadow">
+      <table className="w-full rounded shadow">
         <thead>
           <tr className="border-b">
             <th className="p-2">Email</th>

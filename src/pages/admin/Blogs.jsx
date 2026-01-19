@@ -21,7 +21,7 @@ export default function Users() {
   return (
     <div>
       <h1 className="text-xl font-bold mb-4">Users</h1>
-      <table className="w-full bg-white rounded shadow">
+      <table className="w-full rounded shadow">
         <thead>
           <tr className="border-b">
             <th className="p-2">Email</th>

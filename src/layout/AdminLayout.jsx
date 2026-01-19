@@ -5,9 +5,9 @@ const AdminLayout = () => {
   const { logout } = useAuth();
 
   return (
-    <div className="flex min-h-screen bg-gray-100">
+    <div className="flex min-h-screen">
       {/* Sidebar */}
-      <aside className="w-64 bg-white shadow-md">
+      <aside className="w-64 border-[1px] border-white shadow-md">
         <div className="p-4 text-xl font-bold">Admin Panel</div>
         <nav className="flex flex-col gap-2 p-4">
           <NavLink to="/admin/dashboard" className="hover:text-green-600">
@@ -23,9 +23,9 @@ const AdminLayout = () => {
       </aside>
 
       {/* Main */}
-      <div className="flex-1 flex flex-col">
+      <div className="border-t-[1px] border-b-[1px] border-r-[1px] border-white flex-1 flex flex-col">
         {/* Topbar */}
-        <header className="bg-white shadow p-4 flex justify-between">
+        <header className="border-b-[1px] border-white shadow p-4 flex justify-between">
           <span>Admin Dashboard</span>
           <button
             onClick={logout}
@@ -39,6 +39,7 @@ const AdminLayout = () => {
           <Outlet />
         </main>
       </div>
+      
     </div>
   );
 }
