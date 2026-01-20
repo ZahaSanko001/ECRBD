@@ -9,23 +9,24 @@ const Navbar = () => {
     const[portalDropdown, setPortalDropdown] = useState(false);
 
     useGSAP(() => {
-    const navTween = gsap.timeline({
-        scrollTrigger: {
-            trigger: '#nav',
-            start: "bottom top",
-        }
+        gsap.fromTo(
+            "#nav",
+            { backgroundColor: "transparent", backdropFilter: "blur(0px)" },
+            {
+                backgroundColor: "#00000050",
+                backdropFilter: "blur(8px)",
+                duration: 0.3,
+                ease: "power1.out",
+                scrollTrigger: {
+                    trigger: document.body,
+                    start: "top -80",
+                    toggleActions: "play reverse play reverse",
+                }
+            }
+        );
     });
 
-    navTween.fromTo('#nav', { backgroundColor: "transparent" }, 
-      { 
-        backgroundColor: "#00000050", 
-        backdropFilter: "blur(5px)",
-        duration: 1,
-        ease: "power1.inOut"
-      }
-    );
 
-    });
     
     return(
         <nav>

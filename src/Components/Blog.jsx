@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import BlogForm from "./BlogForm";
 import BlogCard from "./BlogCard";
-import BlogBg from "../Assets/blog-bg1.jpg";
+import BlogBg from "../Assets/blog-bg3.jpg";
 import api from "../api/axios";
 import { useAuth } from "../auth/AuthContext";
 
@@ -79,7 +79,7 @@ const Blog = () => {
   return (
     <div
       id="blogs"
-      className="min-h-screen mx-6 rounded-4xl py-20"
+      className="min-h-screen mx-6 rounded-4xl mt-20 pt-20 border-green-200 border-r-2 border-l-2"
       style={{
         backgroundImage: `url(${BlogBg})`,
         backgroundSize: "cover",

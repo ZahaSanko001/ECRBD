@@ -5,12 +5,7 @@ import Hero from "./Components/Hero";
 import About from "./Components/About";
 import Blog from "./Components/Blog";
 import Contact from "./Components/Contact";
-import Login from "./pages/Login";
-import Dashboard from "./pages/admin/Dashboard";
-import Users from "./pages/admin/Users";
-import Blogs from "./pages/admin/Blogs";
-import AdminLayout from "./layout/AdminLayout";
-import RequireAuth from "./auth/RequireAuth";
+import Event from "./Components/Event";
 
 const App = () => {
 
@@ -19,6 +14,7 @@ const App = () => {
             <Navbar/>
             <Hero/>
             <About/>
+            <Event/>
             <Blog/>
             <Contact/>
         </main>
