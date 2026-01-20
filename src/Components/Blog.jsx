@@ -1,186 +1,132 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import BlogForm from "./BlogForm";
 import BlogCard from "./BlogCard";
-import BlogBg from "../Assets/blog-bg2.jpg";
+import BlogBg from "../Assets/blog-bg1.jpg";
+import api from "../api/axios";
+import { useAuth } from "../auth/AuthContext";
 
-const Blog = ({ userRole = "member" }) => {
-  // ======================== CHANGE #1: MOCK DATA ========================
-  // TODO: Replace this useState with useEffect that fetches blogs from backend
-  // Example: useEffect(() => { fetchBlogs from API }, [])
-  const [blogs, setBlogs] = useState([
-    {
-      id: 1,
-      title: "Getting Started with Fitness Training",
-      content:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-      author: "John Trainer",
-      createdAt: new Date("2024-01-10"),
-      likes: 24,
-      comments: 5,
-      isHidden: false,
-    },
-    {
-      id: 2,
-      title: "Nutrition Tips for Better Performance",
-      content:
-        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-      author: "Jane Member",
-      createdAt: new Date("2024-01-08"),
-      likes: 15,
-      comments: 3,
-      isHidden: false,
-    },
-  ]);
-  // ====================================================================
+const Blog = () => {
+  const { user } = useAuth();
 
-  const [filter, setFilter] = useState("all");
+  const [blogs, setBlogs] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [filter, setFilter] = useState("all");
+  const [loading, setLoading] = useState(true);
 
-  // ======================== CHANGE #2: CREATE BLOG ========================
-  // TODO: Replace this with POST request to your backend API
-  // Example: POST /api/blogs with formData
-  const handleBlogSubmit = (formData) => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        const newBlog = {
-          id: blogs.length + 1,
-          ...formData,
-          author: userRole === "admin" ? "Admin User" : "You",
-          createdAt: new Date(),
-          likes: 0,
-          comments: 0,
-          isHidden: false,
-        };
-        setBlogs((prev) => [newBlog, ...prev]);
-        resolve();
-      }, 500);
-    });
-  };
-  // ====================================================================
+  // 🔹 Load blogs
+  useEffect(() => {
+    loadBlogs();
+  }, []);
 
-  // ======================== CHANGE #3: DELETE BLOG ========================
-  // TODO: Replace this with DELETE request to your backend API
-  // Example: DELETE /api/blogs/{id}
-  const handleDeleteBlog = (id) => {
-    if (window.confirm("Are you sure you want to delete this blog?")) {
-      setBlogs((prev) => prev.filter((blog) => blog.id !== id));
+  const loadBlogs = async () => {
+    try {
+      const res = await api.get("/blogs");
+      setBlogs(res.data);
+    } catch (err) {
+      console.error("Failed to load blogs", err);
+    } finally {
+      setLoading(false);
     }
   };
-  // =====================================================================
 
-  // ======================== CHANGE #4: TOGGLE HIDE ========================
-  // TODO: Replace this with PUT/PATCH request to your backend API
-  // Example: PATCH /api/blogs/{id} with { isHidden: newStatus }
-  const handleToggleHide = (id) => {
-    setBlogs((prev) =>
-      prev.map((blog) =>
-        blog.id === id ? { ...blog, isHidden: !blog.isHidden } : blog
-      )
-    );
+  // 🔹 Create blog
+  const handleBlogSubmit = async (formData) => {
+    try {
+      const res = await api.post("/blogs", formData);
+
+      // re-fetch OR optimistically add
+      await loadBlogs();
+
+      return res.data;
+    } catch (err) {
+      console.error("Failed to create blog", err);
+      throw err;
+    }
   };
-  // =====================================================================
 
-  // Filter blogs
-  const filteredBlogs = blogs
-    .filter((blog) => {
-      if (filter === "hidden") return blog.isHidden;
-      if (filter === "visible") return !blog.isHidden;
-      return true;
-    })
-    .filter((blog) =>
-      blog.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      blog.content.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      blog.author.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+  // 🔹 Delete blog
+  const handleDeleteBlog = async (id) => {
+    if (!window.confirm("Delete this blog?")) return;
+
+    try {
+      await api.delete(`/blogs/${id}`);
+      setBlogs(prev => prev.filter(b => b.id !== id));
+    } catch (err) {
+      console.error("Failed to delete blog", err);
+    }
+  };
+
+  // 🔹 Search blogs (server-side)
+  useEffect(() => {
+    const delay = setTimeout(async () => {
+      try {
+        if (!searchTerm.trim()) {
+          loadBlogs();
+        } else {
+          const res = await api.get(`/blogs/search?q=${searchTerm}`);
+          setBlogs(res.data);
+        }
+      } catch (err) {
+        console.error("Search failed", err);
+      }
+    }, 400);
+
+    return () => clearTimeout(delay);
+  }, [searchTerm]);
+
+  if (loading) return <div className="text-white">Loading blogs...</div>;
 
   return (
-    <div id="blogs" className="min-h-screen mx-6 rounded-4xl py-20" style={{backgroundImage: `url(${BlogBg})`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
+    <div
+      id="blogs"
+      className="min-h-screen mx-6 rounded-4xl py-20"
+      style={{
+        backgroundImage: `url(${BlogBg})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
       <div className="max-w-4xl mx-auto px-6">
-        {/* Page Header */}
+
+        {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-green-300 mb-4">
-            Community Blog
+          <h1 className="text-4xl text-green-300 font-bold mb-4">
+            Community Blogs
           </h1>
-          <p className="text-white text-lg md:text-xl">
-            Share your journey, tips, and experiences with our community
+          <p className="text-green-300 text-lg">
+            Share your journey with the community
           </p>
         </div>
 
-        {/* Blog Form - Only show for members and admins */}
-        {(userRole === "member" || userRole === "admin") && (
-            <BlogForm onSubmit={handleBlogSubmit} userRole={userRole} />
-        )}
+        {/* Create */}
+        {user && <BlogForm onSubmit={handleBlogSubmit} />}
 
-        {/* Search and Filter */}
-        <div className="mb-8 space-y-4">
-          {/* Search Bar */}
-          <div>
-            <input
-              type="text"
-              placeholder="Search blogs by title, content, or author..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full px-4 py-3 bg-slate-800 border border-green-400 rounded text-white placeholder-gray-500 focus:outline-none focus:border-green-300"
-            />
-          </div>
-
-          {/* Filter Tabs */}
-          <div className="flex gap-4">
-            <button
-              onClick={() => setFilter("all")}
-              className={`px-4 py-2 rounded font-semibold transition ${
-                filter === "all"
-                  ? "bg-green-500 text-slate-900"
-                  : "bg-slate-800 text-green-300 border border-green-400 hover:bg-slate-700"
-              }`}
-            >
-              All Blogs ({blogs.length})
-            </button>
-            {userRole === "admin" && (
-              <>
-                <button
-                  onClick={() => setFilter("visible")}
-                  className={`px-4 py-2 rounded font-semibold transition ${
-                    filter === "visible"
-                      ? "bg-green-500 text-slate-900"
-                      : "bg-slate-800 text-green-300 border border-green-400 hover:bg-slate-700"
-                  }`}
-                >
-                  Visible ({blogs.filter((b) => !b.isHidden).length})
-                </button>
-                <button
-                  onClick={() => setFilter("hidden")}
-                  className={`px-4 py-2 rounded font-semibold transition ${
-                    filter === "hidden"
-                      ? "bg-green-500 text-slate-900"
-                      : "bg-slate-800 text-green-300 border border-green-400 hover:bg-slate-700"
-                  }`}
-                >
-                  Hidden ({blogs.filter((b) => b.isHidden).length})
-                </button>
-              </>
-            )}
-          </div>
+        {/* Search */}
+        <div className="mb-8">
+          <input
+            type="text"
+            placeholder="Search blogs..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full px-4 py-3 border border-green-400 rounded text-green-300 placeholder-green-200"
+          />
         </div>
 
-        {/* Blogs List */}
-        <div className="max-h-[600px] overflow-y-auto space-y-6 pr-4">
-          {filteredBlogs.length > 0 ? (
-            filteredBlogs.map((blog) => (
+        {/* List */}
+        <div className="max-h-150 overflow-y-auto space-y-6 pr-4">
+          {blogs.length > 0 ? (
+            blogs.map(blog => (
               <BlogCard
                 key={blog.id}
                 blog={blog}
-                userRole={userRole}
                 onDelete={handleDeleteBlog}
-                onToggleHide={handleToggleHide}
               />
             ))
           ) : (
-            <div className="text-center py-12">
-              <p className="text-gray-400 text-lg">No blogs found</p>
-            </div>
+            <p className="text-center text-gray-400">No blogs found</p>
           )}
         </div>
+
       </div>
     </div>
   );

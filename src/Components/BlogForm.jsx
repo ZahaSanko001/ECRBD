@@ -36,9 +36,9 @@ const BlogForm = ({ onSubmit, userRole }) => {
   };
 
   return (
-    <div className=" border border-black rounded-lg p-6 mb-8">
+    <div className="border border-green-400 rounded-lg p-6 mb-8">
       <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-bold text-white">Create a New Blog Post</h2>
+        <h2 className="text-2xl font-bold text-green-300">Create a New Blog Post</h2>
         <button
           onClick={() => setIsCollapsed(!isCollapsed)}
           className="text-green-300 hover:text-green-200 transition text-xl"
@@ -59,7 +59,7 @@ const BlogForm = ({ onSubmit, userRole }) => {
             value={formData.title}
             onChange={handleChange}
             placeholder="Enter blog title"
-            className="w-full px-4 py-2 border border-green-400 rounded text-white placeholder-gray-500 focus:outline-none focus:border-green-300"
+            className="w-full px-4 py-2 border border-green-400 rounded text-white placeholder-green-200 focus:outline-none focus:border-green-300"
             maxLength={200}
           />
           <p className="text-xs text-gray-400 mt-1">{formData.title.length}/200</p>
@@ -73,7 +73,7 @@ const BlogForm = ({ onSubmit, userRole }) => {
             value={formData.content}
             onChange={handleChange}
             placeholder="Write your blog content here..."
-            className="w-full px-4 py-2 bg-slate-700 border border-green-400 rounded text-white placeholder-gray-500 focus:outline-none focus:border-green-300 h-48 resize-none"
+            className="w-full px-4 py-2 border border-green-400 rounded text-white placeholder-gray-500 focus:outline-none focus:border-green-300 h-48 resize-none"
             maxLength={5000}
           />
           <p className="text-xs text-gray-400 mt-1">{formData.content.length}/5000</p>

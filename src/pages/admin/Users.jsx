@@ -6,7 +6,6 @@ export default function Users() {
 
   useEffect(() => {
     api.get("/admin/users").then(res => {
-      console.log(res.data);
       setUsers(res.data);
     })
     .catch(err => {
