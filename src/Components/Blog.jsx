@@ -77,59 +77,59 @@ const Blog = () => {
   if (loading) return <div className="text-white">Loading blogs...</div>;
 
   return (
-    <section className="min-h-screen mx-6 mt-20">
+    <section className="mx-6 mt-20">
       <h1 className="text-center text-4xl text-green-300 font-bold pb-10">
             Community Blogs
       </h1>
-    <div
-      id="blogs"
-      className="rounded-4xl pt-20 border-emerald-600 border-2"
-      style={{
-        backgroundImage: `url(${BlogBg})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    >
-      <div className="max-w-4xl mx-auto px-6">
+      <div
+        id="blogs"
+        className="min-h-screen rounded-4xl pt-20 border-emerald-600 border-2"
+        style={{
+          backgroundImage: `url(${BlogBg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="max-w-4xl mx-auto px-6">
 
-        {/* Header */}
-        <div className="text-center mb-12">
-          <p className="text-green-300 text-lg">
-            Share your journey with the community
-          </p>
+          {/* Header */}
+          <div className="text-center mb-12">
+            <p className="text-green-300 text-lg">
+              Share your journey with the community
+            </p>
+          </div>
+
+          {/* Create */}
+          {user && <BlogForm onSubmit={handleBlogSubmit} />}
+
+          {/* Search */}
+          <div className="mb-8">
+            <input
+              type="text"
+              placeholder="Search blogs..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full px-4 py-3 border border-green-400 rounded text-green-300 placeholder-green-200"
+            />
+          </div>
+
+          {/* List */}
+          <div className="max-h-150 overflow-y-auto space-y-6 pr-4">
+            {blogs.length > 0 ? (
+              blogs.map(blog => (
+                <BlogCard
+                  key={blog.id}
+                  blog={blog}
+                  onDelete={handleDeleteBlog}
+                />
+              ))
+            ) : (
+              <p className="text-center text-gray-400">No blogs found</p>
+            )}
+          </div>
+
         </div>
-
-        {/* Create */}
-        {user && <BlogForm onSubmit={handleBlogSubmit} />}
-
-        {/* Search */}
-        <div className="mb-8">
-          <input
-            type="text"
-            placeholder="Search blogs..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full px-4 py-3 border border-green-400 rounded text-green-300 placeholder-green-200"
-          />
-        </div>
-
-        {/* List */}
-        <div className="max-h-150 overflow-y-auto space-y-6 pr-4">
-          {blogs.length > 0 ? (
-            blogs.map(blog => (
-              <BlogCard
-                key={blog.id}
-                blog={blog}
-                onDelete={handleDeleteBlog}
-              />
-            ))
-          ) : (
-            <p className="text-center text-gray-400">No blogs found</p>
-          )}
-        </div>
-
       </div>
-    </div>
     </section>
   );
 };

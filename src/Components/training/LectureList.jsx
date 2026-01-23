@@ -1,6 +1,6 @@
 export default function LectureList({ lectures, current, onSelect }) {
   return (
-    <aside className="w-80 bg-slate-900 p-4 overflow-y-auto">
+    <aside className="w-80 bg-green-950 p-4 overflow-y-auto">
       <h2 className="font-bold text-lg mb-4">Lectures</h2>
 
       {lectures.map(l => (
