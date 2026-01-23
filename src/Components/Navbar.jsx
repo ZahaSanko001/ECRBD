@@ -35,11 +35,11 @@ const Navbar = () => {
                     ECRBD
                 </div>
                 <div className="hidden md:flex gap-8">
-                    <a href="#hero" className="hover:text-green-200">Home</a>
-                    <a href="#about" className="hover:text-green-200">Training</a>
+                    <a href="#home" className="hover:text-green-200">Home</a>
+                    <Link to="/trainings" className="hover:text-green-200">Trainings</Link>
                     <a href="#about" className="hover:text-green-200">Volunteer</a>
                     <a href="#blogs" className="hover:text-green-200">Blogs</a>
-                    <a href="#projects" className="hover:text-green-200">Events</a>
+                    <a href="#events" className="hover:text-green-200">Events</a>
                     <a href="#projects" className="hover:text-green-200">Q&A</a>
                     <a href="#contact" className="hover:text-green-200">Contact</a>
                     <Link to="/login" className="hover:text-green-200">SignIn</Link>

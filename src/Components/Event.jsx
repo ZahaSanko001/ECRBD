@@ -2,25 +2,25 @@ import EventImageCard from "./EventImageCard";
 import EventBg from "../Assets/eventSide1.jpg";
 
 const eventImages = [
-  "1.jpg",
+  "5.jpg",
   "2.jpg",
-  "3.jpg",
+  "6.jpg",
   "4.jpg"
 ];
 
 const Event = () => {
   return (
-    <section className="h-screen px-6 mt-20 pb-20">
+    <section id="events" className="h-screen px-6 mt-20 pb-20">
       <div className="grid md:grid-cols-2 gap-5 h-full">
 
         {/* 🔹 Flashing image card */}
-        <div className="rounded-4xl border-l-2 border-r-2 border-amber-200">
+        <div className="rounded-4xl border-2 border-emerald-500">
           <EventImageCard images={eventImages} interval={2500} />
         </div>
 
         {/* 🔹 Events list card */}
-        <div className="rounded-4xl border-l-2 border-r-2 border-cyan-200 p-6" style={{ backgroundImage: `url(${EventBg})`, backgroundSize: 'cover', backgroundPosition: 'center', }}>
-          <h3 className="text-xl font-semibold mb-4">Upcoming Events</h3>
+        <div className="rounded-4xl border-2 border-emerald-500 p-6" style={{ backgroundImage: `url(${EventBg})`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
+          <h3 className="text-3xl font-bold mb-10">Upcoming Events</h3>
 
           <ul className="space-y-4">
             <li className="border-b border-white/10 pb-3">

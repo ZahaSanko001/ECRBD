@@ -77,9 +77,13 @@ const Blog = () => {
   if (loading) return <div className="text-white">Loading blogs...</div>;
 
   return (
+    <section className="min-h-screen mx-6 mt-20">
+      <h1 className="text-center text-4xl text-green-300 font-bold pb-10">
+            Community Blogs
+      </h1>
     <div
       id="blogs"
-      className="min-h-screen mx-6 rounded-4xl mt-20 pt-20 border-green-200 border-r-2 border-l-2"
+      className="rounded-4xl pt-20 border-emerald-600 border-2"
       style={{
         backgroundImage: `url(${BlogBg})`,
         backgroundSize: "cover",
@@ -90,9 +94,6 @@ const Blog = () => {
 
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl text-green-300 font-bold mb-4">
-            Community Blogs
-          </h1>
           <p className="text-green-300 text-lg">
             Share your journey with the community
           </p>
@@ -129,6 +130,7 @@ const Blog = () => {
 
       </div>
     </div>
+    </section>
   );
 };
 

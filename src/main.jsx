@@ -10,10 +10,14 @@ import { AuthProvider } from './auth/AuthContext.jsx'
 import RequireAuth from './auth/RequireAuth.jsx'
 import Users from './pages/admin/Users.jsx'
 import Blogs from './pages/admin/Blogs.jsx'
+import Trainings from './pages/Trainings.jsx'
+import Course from './pages/Course.jsx'
 
 const router = createBrowserRouter([
-  {path: "/", element: <App />},
+  {path: "/", element: <App/>},
   {path: "/login", element: <Login/>},
+  {path: "/trainings", element: <Trainings/>},
+  {path: "/trainings/:id", element: <Course/>},
   {path: "/admin", element: (
                     <RequireAuth role={"Admin"}> 
                       <AdminLayout/>
