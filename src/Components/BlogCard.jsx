@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const BlogCard = ({ blog, userRole, onDelete, onToggleHide }) => {
   return (
@@ -43,9 +44,9 @@ const BlogCard = ({ blog, userRole, onDelete, onToggleHide }) => {
       </div> */}
 
       {/* Read More Button */}
-      <button className="mt-4 px-4 py-2 border border-green-400 text-green-400 rounded hover:bg-green-400 hover:text-slate-900 transition">
-        Read More
-      </button>
+      <Link Link to={`/blogs/${blog.id}`}>
+        <button className="bg-green-800 px-2 py-1 rounded-md hover:bg-green-600">Read more</button>
+      </Link>
     </div>
   );
 };

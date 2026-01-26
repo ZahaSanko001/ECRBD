@@ -9,15 +9,19 @@ import Dashboard from './pages/admin/Dashboard.jsx'
 import { AuthProvider } from './auth/AuthContext.jsx'
 import RequireAuth from './auth/RequireAuth.jsx'
 import Users from './pages/admin/Users.jsx'
-import Blogs from './pages/admin/Blogs.jsx'
+import BlogsControl from './pages/admin/BlogsControl.jsx'
 import Trainings from './pages/Trainings.jsx'
 import Course from './pages/Course.jsx'
+import Blogs from './pages/Blogs/Blogs.jsx'
+import BlogRead from './pages/Blogs/BlogRead.jsx'
 
 const router = createBrowserRouter([
   {path: "/", element: <App/>},
   {path: "/login", element: <Login/>},
   {path: "/trainings", element: <Trainings/>},
   {path: "/trainings/:id", element: <Course/>},
+  {path: "/blogs", element: <Blogs/>},
+  {path: "/blogs/:id", element: <BlogRead />},
   {path: "/admin", element: (
                     <RequireAuth role={"Admin"}> 
                       <AdminLayout/>
@@ -26,7 +30,7 @@ const router = createBrowserRouter([
                     { index: true, element: <Dashboard/> },
                     { path: "/admin/dashboard", element: <Dashboard/> },
                     { path: "/admin/users", element: <Users/> },
-                    { path: "/admin/blogs", element: <Blogs/> },
+                    { path: "/admin/blogs", element: <BlogsControl/> },
                    ],
   },
 ]);
