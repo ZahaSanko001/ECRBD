@@ -6,6 +6,7 @@ import About from "./Components/About";
 import Blog from "./Components/Blog";
 import Contact from "./Components/Contact";
 import Event from "./Components/Event";
+import Training from "./Components/training/Training";
 
 const App = () => {
 

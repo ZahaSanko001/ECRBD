@@ -1,6 +1,11 @@
 import ResourceList from "./ResourceList";
+import UploadResource from "./UploadResource";
+import { useAuth } from "../../auth/AuthContext";
 
-export default function LecturePlayer({ lecture }) {
+export default function LecturePlayer({ lecture, courseId, onUpdated }) {
+  const { user } = useAuth();
+  const canManage = user?.role === "Admin" || user?.role === "Trainer";
+
   if (!lecture) return null;
 
   return (
@@ -27,6 +32,14 @@ export default function LecturePlayer({ lecture }) {
 
       {/* Resources */}
       <ResourceList resources={lecture.resources} />
+
+      {canManage && (
+        <UploadResource
+          courseId={courseId}
+          lectureId={lecture.id}
+          onUploaded={onUpdated}
+        />
+      )}
     </div>
   );
 }

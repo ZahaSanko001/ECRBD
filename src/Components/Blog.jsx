@@ -83,14 +83,15 @@ const Blog = () => {
       </h1>
       <div
         id="blogs"
-        className="min-h-screen rounded-4xl pt-20 border-emerald-600 border-2"
+        className="relative min-h-screen rounded-4xl pt-20 border-emerald-600 border-2"
         style={{
           backgroundImage: `url(${BlogBg})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       >
-        <div className="max-w-4xl mx-auto px-6">
+        <div className="absolute inset-0 backdrop-blur-sm rounded-4xl"></div>
+        <div className="relative max-w-[90%] mx-auto px-6">
 
           {/* Header */}
           <div className="text-center mb-12">

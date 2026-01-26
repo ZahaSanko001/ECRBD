@@ -14,6 +14,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const res = await api.post("/auth/login", { Name, Email, Password });
+    console.log(res)
     login(res.data.token);
 
     const decoded = jwtDecode(res.data.token);

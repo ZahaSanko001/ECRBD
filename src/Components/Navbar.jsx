@@ -35,7 +35,7 @@ const Navbar = () => {
                     ECRBD
                 </div>
                 <div className="hidden md:flex gap-8">
-                    <a href="#home" className="hover:text-green-200">Home</a>
+                    <Link to="/" className="hover:text-green-200">Home</Link>
                     <Link to="/trainings" className="hover:text-green-200">Trainings</Link>
                     <a href="#about" className="hover:text-green-200">Volunteer</a>
                     <a href="#blogs" className="hover:text-green-200">Blogs</a>
